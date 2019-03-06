@@ -1,6 +1,6 @@
 module.exports = {
     launch: {
-      headless: false,
+      headless: true,
       slowMo: 10,
       devtools: true,
       timeout: 100000,
@@ -10,7 +10,8 @@ module.exports = {
         '--ignore-certificate-errors',
         "--disable-popup-blocking",
         "--disable-infobars",
-        '--disable-web-security'
+        '--disable-web-security',
+        "--shm-size=1gb"
       ]
     },
     browserContext: 'default',
@@ -18,6 +19,6 @@ module.exports = {
     server: {
       command: `BROWSER=none npm run start`,
       port: 3001,
-      launchTimeout: 4000,
+      launchTimeout: 40000,
     },
 }
