@@ -21,7 +21,11 @@ class App extends Component {
   }
 
   entryHandler() {
-    this.setState({ entrySaved: true });
+    this.setState({ entrySaved: true, updateIndex: true });
+  }
+
+  indexUpdated() {
+    this.setState({ updateIndex: false });
   }
 
   onChange(event) {
@@ -44,12 +48,29 @@ class App extends Component {
   render() {
     let renderLogin;
     let user;
+    let performanceDataIndex;
 
     if (this.state.authenticated === true) {
       user = JSON.parse(sessionStorage.getItem('credentials')).uid;
       renderLogin = (
         <p>Hi {user}</p>
       )
+      if (this.state.renderIndex === true) {
+        performanceDataIndex = (
+          <>
+            <DisplayPerformanceData
+              updateIndex={this.state.updateIndex}
+              indexUpdated={this.indexUpdated.bind(this)}
+            />
+            <button onClick={() => this.setState({ renderIndex: false })}>Hide past entries</button>
+          </>
+        )
+      } else {
+      performanceDataIndex = (
+        <button id="show-index" onClick={() => this.setState({ renderIndex: false })}>Show past entries</button>
+      )
+    }
+   
     } else {
       if (this.state.renderLoginForm === true) {
         renderLogin = (
@@ -83,7 +104,8 @@ class App extends Component {
           entrySaved={this.state.entrySaved}
           entryHandler={this.entryHandler.bind(this)}
         />
-      {renderLogin}
+        {performanceDataIndex}
+        {renderLogin}
 
       </div>
     );
