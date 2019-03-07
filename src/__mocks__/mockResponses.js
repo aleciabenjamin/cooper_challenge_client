@@ -17,6 +17,14 @@ module.exports = {
           email: "johndoe@mail.com",
           provider: "email",
           uid: "johndoe@mail.com"
+        },
+        
+      savingEntryResponse: {
+        status: 200,
+        headers: {},
+        body: JSON.stringify({
+          message: "all good"
+          })
         }
       })
     }
