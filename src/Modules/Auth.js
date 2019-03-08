@@ -34,4 +34,4 @@ const storeAuthCredentials = ({ data, headers }) => {
   })
 };
 
-export { authenticate }
+export {authenticate, storeAuthCredentials}

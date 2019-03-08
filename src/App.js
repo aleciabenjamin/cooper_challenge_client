@@ -3,6 +3,7 @@ import DisplayCooperResult from './Components/DisplayCooperResult';
 import InputFields from './Components/InputFields';
 import LoginForm from './Components/LoginForm';
 import { authenticate } from './Modules/Auth';
+import DisplayPerformanceData from './Components/DisplayPerformanceData';
 
 class App extends Component {
   constructor(props) {
@@ -55,6 +56,9 @@ class App extends Component {
       renderLogin = (
         <p>Hi {user}</p>
       )
+      performanceDataIndex = (
+        <button id="show-index" onClick={() => this.setState({ renderIndex: true })}>Show past entries</button>
+      )
       if (this.state.renderIndex === true) {
         performanceDataIndex = (
           <>
@@ -66,10 +70,10 @@ class App extends Component {
           </>
         )
       } else {
-      performanceDataIndex = (
-        <button id="show-index" onClick={() => this.setState({ renderIndex: false })}>Show past entries</button>
-      )
-    }
+        performanceDataIndex = (
+          <button id="show-index" onClick={() => this.setState({ renderIndex: true })}>Show past entries</button>
+        )
+      }
    
     } else {
       if (this.state.renderLoginForm === true) {
