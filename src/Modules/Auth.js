@@ -29,7 +29,7 @@ const storeAuthCredentials = ({ data, headers }) => {
       expiry: expiry,
       token_type: 'Bearer'
     }));
-    sessionStorage.setItem('current_user', JSON.stringify({ id: data.data.id }));
+    sessionStorage.setItem('current_user', JSON.stringify({ id: data.id }));
     resolve(true)
   })
 };
