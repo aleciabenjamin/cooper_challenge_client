@@ -4,6 +4,7 @@ import InputFields from './Components/InputFields';
 import LoginForm from './Components/LoginForm';
 import { authenticate } from './Modules/Auth';
 import DisplayPerformanceData from './Components/DisplayPerformanceData';
+import { Container, Header, Button, Message } from 'semantic-ui-react';
 
 class App extends Component {
   constructor(props) {
@@ -36,6 +37,12 @@ class App extends Component {
     })
   }
 
+  onGenderChange(value) {
+    this.setState({
+      gender: value 
+    })
+  }
+
   async onLogin(e) {
     e.preventDefault();
     let resp = await authenticate(this.state.email, this.state.password)
@@ -54,10 +61,13 @@ class App extends Component {
     if (this.state.authenticated === true) {
       user = JSON.parse(sessionStorage.getItem('credentials')).uid;
       renderLogin = (
+        <Message positive>
         <p>Hi {user}</p>
-      )
+        </Message>
+      );
       performanceDataIndex = (
-        <button id="show-index" onClick={() => this.setState({ renderIndex: true })}>Show past entries</button>
+        <Button 
+        id="show-index" onClick={() => this.setState({ renderIndex: true })}>Show past entries</Button>
       )
       if (this.state.renderIndex === true) {
         performanceDataIndex = (
@@ -66,13 +76,22 @@ class App extends Component {
               updateIndex={this.state.updateIndex}
               indexUpdated={this.indexUpdated.bind(this)}
             />
-            <button onClick={() => this.setState({ renderIndex: false })}>Hide past entries</button>
+            <Button 
+            primary
+            onClick={() => this.setState({ renderIndex: false })}>Hide past entries</Button>
           </>
         )
       } else {
         performanceDataIndex = (
-          <button id="show-index" onClick={() => this.setState({ renderIndex: true })}>Show past entries</button>
-        )
+          <Button 
+          primary
+          id="show-index" 
+          onClick={() => this.setState({ renderIndex: true })}
+          >
+          
+          Show past entries
+          </Button>
+        );
       }
    
     } else {
@@ -88,7 +107,9 @@ class App extends Component {
       } else {
         renderLogin = (
           <>
-            <button id="login" onClick={() => this.setState({ renderLoginForm: true })}>Login</button>
+            <Button
+            primary
+            id="login" onClick={() => this.setState({ renderLoginForm: true })}>Login</Button>
             <p>{this.state.message}</p>
           </>
         )
@@ -96,8 +117,12 @@ class App extends Component {
     }
     return (
       <div>
+      <Container>
+        <Header as='h2'>Cooper Test Assessment</Header>
+        {renderLogin}
         <InputFields
           inputChangeHandler={this.onChange.bind(this)}
+          inputGenderChangeHandler={this.onGenderChange.bind(this)}
         />
         
         <DisplayCooperResult
@@ -109,8 +134,7 @@ class App extends Component {
           entryHandler={this.entryHandler.bind(this)}
         />
         {performanceDataIndex}
-        {renderLogin}
-
+        </Container>
       </div>
     );
   }
