@@ -30,7 +30,7 @@ This test also allows you to compare your cardiovascular endurance with others o
 - Making post requests to an API from a client
 
 ### Client site deployed:
-
+https://5c855528835c50eef8c1dcc6--gifted-villani-becce3.netlify.com/
 
 ### Backend site deployed:
 https://np-cooper-api.herokuapp.com/api/v1/auth
