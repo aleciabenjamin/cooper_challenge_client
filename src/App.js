@@ -22,25 +22,11 @@ class App extends Component {
     }
   }
 
-  entryHandler() {
-    this.setState({ entrySaved: true, updateIndex: true });
-  }
-
-  indexUpdated() {
-    this.setState({ updateIndex: false });
-  }
-
   onChange(event) {
     this.setState({
       [event.target.id]: event.target.value,
       entrySaved: false
-    })
-  }
-
-  onGenderChange(value) {
-    this.setState({
-      gender: value 
-    })
+    });
   }
 
   async onLogin(e) {
@@ -52,6 +38,22 @@ class App extends Component {
       this.setState({ message: resp.message, renderLoginForm: false })
     }
   }
+
+  entryHandler(e) {
+    this.setState({ entrySaved: true, updateIndex: true });
+  }
+
+  indexUpdated() {
+    this.setState({ updateIndex: false });
+  }
+
+  onGenderChange(value) {
+    this.setState({
+      gender: value 
+    })
+  }
+
+  
 
   render() {
     let renderLogin;
@@ -67,7 +69,9 @@ class App extends Component {
       );
       performanceDataIndex = (
         <Button 
-        id="show-index" onClick={() => this.setState({ renderIndex: true })}>Show past entries</Button>
+          id="show-index" onClick={() => this.setState({ renderIndex: true })}>
+          Show past entries
+          </Button>
       )
       if (this.state.renderIndex === true) {
         performanceDataIndex = (
@@ -77,8 +81,10 @@ class App extends Component {
               indexUpdated={this.indexUpdated.bind(this)}
             />
             <Button 
-            primary
-            onClick={() => this.setState({ renderIndex: false })}>Hide past entries</Button>
+              primary
+              onClick={() => this.setState({ renderIndex: false })}>
+              Hide past entries
+            </Button>
           </>
         )
       } else {
@@ -86,9 +92,7 @@ class App extends Component {
           <Button 
           primary
           id="show-index" 
-          onClick={() => this.setState({ renderIndex: true })}
-          >
-          
+          onClick={() => this.setState({ renderIndex: true })}>
           Show past entries
           </Button>
         );
@@ -108,8 +112,10 @@ class App extends Component {
         renderLogin = (
           <>
             <Button
-            primary
-            id="login" onClick={() => this.setState({ renderLoginForm: true })}>Login</Button>
+              primary
+              id="login" onClick={() => this.setState({ renderLoginForm: true })}>
+              Login
+            </Button>
             <p>{this.state.message}</p>
           </>
         )
