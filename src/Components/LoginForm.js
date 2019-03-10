@@ -5,24 +5,20 @@ const LoginForm = (props) => {
   return (
     <form>
       <div>
-        {/* <label >Email</label> */}
-        <Input 
-        placeholder='Email'
-        id="email" 
-        onChange={props.inputChangeHandler} />
+        <Input
+          placeholder='Email'
+          id="email"
+          onChange={props.inputChangeHandler} />
       </div>
-
       <div>
-        {/* <label>Password</label> */}
-        <Input 
-        placeholder='Password'
-        id="password" 
-        onChange={props.inputChangeHandler} />
+        <Input
+          placeholder='Password'
+          id="password"
+          onChange={props.inputChangeHandler} />
       </div>
-      
-      <Button
+      <Button basic color='olive' content='Olive'
         primary
-        onClick={(e) => props.loginHandler(e)} 
+        onClick={(e) => props.loginHandler(e)}
         id="submit">Submit</Button>
     </form>
   )

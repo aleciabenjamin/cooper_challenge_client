@@ -49,11 +49,11 @@ class App extends Component {
 
   onGenderChange(value) {
     this.setState({
-      gender: value 
+      gender: value
     })
   }
 
-  
+
 
   render() {
     let renderLogin;
@@ -64,14 +64,14 @@ class App extends Component {
       user = JSON.parse(sessionStorage.getItem('credentials')).uid;
       renderLogin = (
         <Message positive>
-        <p>Hi {user}</p>
+          <p>Hi {user}</p>
         </Message>
       );
       performanceDataIndex = (
-        <Button 
+        <Button
           id="show-index" onClick={() => this.setState({ renderIndex: true })}>
           Show past entries
-          </Button>
+        </Button>
       )
       if (this.state.renderIndex === true) {
         performanceDataIndex = (
@@ -80,7 +80,7 @@ class App extends Component {
               updateIndex={this.state.updateIndex}
               indexUpdated={this.indexUpdated.bind(this)}
             />
-            <Button 
+            <Button basic color='olive' content='Olive'
               primary
               onClick={() => this.setState({ renderIndex: false })}>
               Hide past entries
@@ -89,20 +89,20 @@ class App extends Component {
         )
       } else {
         performanceDataIndex = (
-          <Button 
-          primary
-          id="show-index" 
-          onClick={() => this.setState({ renderIndex: true })}>
-          Show past entries
+          <Button basic color='olive' content='Olive'
+            primary
+            id="show-index"
+            onClick={() => this.setState({ renderIndex: true })}>
+            Show past entries
           </Button>
         );
       }
-   
+
     } else {
       if (this.state.renderLoginForm === true) {
         renderLogin = (
           <>
-            <LoginForm 
+            <LoginForm
               loginHandler={this.onLogin.bind(this)}
               inputChangeHandler={this.onChange.bind(this)}
             />
@@ -111,7 +111,7 @@ class App extends Component {
       } else {
         renderLogin = (
           <>
-            <Button
+            <Button basic color='olive' content='Olive'
               primary
               id="login" onClick={() => this.setState({ renderLoginForm: true })}>
               Login
@@ -123,23 +123,24 @@ class App extends Component {
     }
     return (
       <div>
-      <Container>
-        <Header as='h2'>Cooper Test Assessment</Header>
-        {renderLogin}
-        <InputFields
-          inputChangeHandler={this.onChange.bind(this)}
-          inputGenderChangeHandler={this.onGenderChange.bind(this)}
-        />
-        
-        <DisplayCooperResult
-          distance={this.state.distance}
-          gender={this.state.gender}
-          age={this.state.age}
-          authenticated={this.state.authenticated}
-          entrySaved={this.state.entrySaved}
-          entryHandler={this.entryHandler.bind(this)}
-        />
-        {performanceDataIndex}
+        <Container>
+          <Header as='h2' color='blue'>Cooper Test Assessment
+          </Header>
+          {renderLogin}
+          <InputFields
+            inputChangeHandler={this.onChange.bind(this)}
+            inputGenderChangeHandler={this.onGenderChange.bind(this)}
+          />
+
+          <DisplayCooperResult
+            distance={this.state.distance}
+            gender={this.state.gender}
+            age={this.state.age}
+            authenticated={this.state.authenticated}
+            entrySaved={this.state.entrySaved}
+            entryHandler={this.entryHandler.bind(this)}
+          />
+          {performanceDataIndex}
         </Container>
       </div>
     );
